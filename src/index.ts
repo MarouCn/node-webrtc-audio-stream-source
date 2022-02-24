@@ -7,7 +7,7 @@ class NodeWebRtcAudioStreamSource extends wrtc.nonstandard.RTCAudioSource {
     bitsPerSample = 16,
     sampleRate = 48000,
     channelCount = 1,
-    _finishCallback
+    _finishCallback = function() {}
   ) {
     let cache = Buffer.alloc(0);
     let streamEnd = false;
