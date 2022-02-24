@@ -6,7 +6,8 @@ class NodeWebRtcAudioStreamSource extends wrtc.nonstandard.RTCAudioSource {
     readable: Readable,
     bitsPerSample = 16,
     sampleRate = 48000,
-    channelCount = 1
+    channelCount = 1,
+    _finishCallback
   ) {
     let cache = Buffer.alloc(0);
     let streamEnd = false;
@@ -37,6 +38,7 @@ class NodeWebRtcAudioStreamSource extends wrtc.nonstandard.RTCAudioSource {
       if (!streamEnd || cache.length >= byteLength) {
         setTimeout(() => processData(), 10); // every 10 ms, required by node-webrtc audio
       }
+      else _finishCallback();
     };
     processData();
   }
